@@ -1,0 +1,172 @@
+/* some style */
+.container {
+  width: 100%;
+  height: 100%;
+}
+.container h2{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+table {
+  margin: 0 auto; /* or margin: 0 auto 0 auto */
+  border-collapse:collapse;
+}
+
+table thead th { 
+  border-bottom: 2px solid #CCC; 
+  padding-bottom: 5px;
+}
+
+table thead th.active{ 
+  border-top: 2px solid #CCC; 
+  padding-top: 5px;
+}
+table thead th { 
+  width: 50px;
+}
+table thead th:first-child { 
+  width: 200px;
+}
+table tbody td  { 
+  text-align: center; 
+  padding: 10px 26px 5px 0;
+  border-bottom: 1px solid #CCC; 
+}
+table tbody td:first-child  { 
+  text-align: left;
+}
+.country {
+  padding-left: 50px;
+}
+/*
+table tbody th span:first-child { 
+  width: 200px;
+}
+table tbody th span:first-child { 
+  width: 200px;
+} */
+.legend-gold {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: gold;
+  /* margin-right: 20px; */
+}
+.legend-silver {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: silver;
+  /* margin-right: 20px; */
+}
+.legend-bronze {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: brown;
+  /* margin-right: 20px; */
+}
+.flag-USA{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 17px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-NOR{
+  width: 28px;
+  height: 20px;
+  background: url(../images/flags.png) 0 307px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-RUS{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 289px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-NED{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 323px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-FRA{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 374px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-SWE{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 476px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-ITA{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 561px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-CAN{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 408px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-SUI{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 272px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-BLR{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 204px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-GER{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 578px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-AUT{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 0px;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.flag-CHN{
+  width: 28px;
+  height: 17px;
+  background: url(../images/flags.png) 0 391px;
+  position: absolute;
+  margin-left: 15px;
+}
