@@ -1,4 +1,5 @@
 (ns medal-app.db)
 
 (def default-db
-  {:name "re-frame" :sortOrder "gold" })
+  {:name "re-frame"
+   :sort-order "gold" })

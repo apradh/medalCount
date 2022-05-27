@@ -1,6 +1,5 @@
 (ns medal-app.subs
-  (:require
-   [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
  ::name
@@ -8,9 +7,9 @@
    (:name db)))
 
 (re-frame/reg-sub
- ::loading
+ ::loading?
  (fn [db]
-   (:loading db)))
+   (:loading? db)))
 
 (re-frame/reg-sub
  ::medals
@@ -18,6 +17,6 @@
    (:medals db)))
 
 (re-frame/reg-sub
- ::sortOrder
+ ::sort-order
  (fn [db]
-   (:sortOrder db)))
+   (:sort-order db)))
