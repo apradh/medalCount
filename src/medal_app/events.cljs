@@ -30,9 +30,13 @@
 (re-frame/reg-event-db
   ::fetch-medals-success
   (fn [db [_ data]]
+    (def medalData (map (fn [d]
+      (let [{:keys [gold silver bronze]} d]
+        (assoc d :total (+ gold silver bronze))
+    )) data))
     (-> db
       (assoc :loading false)
-      (assoc :medals (reverse(sort-by :gold data))))))
+      (assoc :medals (reverse(sort-by (juxt :gold :silver) medalData))))))
 
 (re-frame/reg-event-db
   ::fetch-medals-failure
@@ -43,6 +47,7 @@
 (re-frame/reg-event-db
  ::sort-medals
  (fn [db [_ val data]]
+  (def tieBreaker (if (= val "gold") (keyword "silver") (keyword "gold")))
   (-> db
     (assoc :sortOrder val)
-    (assoc :medals (reverse (sort-by (keyword val) data))))))
+    (assoc :medals (reverse (sort-by (juxt (keyword val) tieBreaker)  data))))))
