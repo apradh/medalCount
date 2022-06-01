@@ -1,11 +1,9 @@
 (ns medal-app.core
-  (:require
-   [reagent.dom :as rdom]
-   [re-frame.core :as re-frame]
-   [medal-app.events :as events]
-   [medal-app.views :as views]
-   [medal-app.config :as config]
-   ))
+  (:require [reagent.dom :as rdom]
+            [re-frame.core :as re-frame]
+            [medal-app.events :as events]
+            [medal-app.views :as views]
+            [medal-app.config :as config]))
 
 
 (defn dev-setup []
