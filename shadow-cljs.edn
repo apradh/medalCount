@@ -8,6 +8,9 @@
  [[reagent "1.1.1"]
   [re-frame "1.2.0"]
   [day8.re-frame/http-fx "0.2.4"]
+  [day8.re-frame/tracing "0.6.2"]
+  [bidi "2.1.6"]
+  [clj-commons/pushy "0.3.10"]
   [binaryage/devtools "1.0.6"]]
 
  :dev-http

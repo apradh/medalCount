@@ -3,7 +3,9 @@
             [re-frame.core :as re-frame]
             [medal-app.events :as events]
             [medal-app.views :as views]
-            [medal-app.config :as config]))
+            [medal-app.routes :as routes]
+            [medal-app.config :as config]
+            [medal-app.medal-edit.views]))
 
 
 (defn dev-setup []
@@ -17,6 +19,7 @@
     (rdom/render [views/main-panel] root-el)))
 
 (defn init []
+  (routes/start!)
   (re-frame/dispatch-sync [::events/initialize-db])
   (dev-setup)
   (mount-root))

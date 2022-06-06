@@ -1,10 +1,12 @@
 (ns medal-app.views
   (:require [re-frame.core :as re-frame]
             [medal-app.subs :as subs]
+            [medal-app.routes :as routes]
             [medal-app.events :as events]))
 
 (defn medal-row [i {:keys [code gold silver bronze]}]
-  [:tr {:key code}
+  [:tr {:key code
+        :on-click #(re-frame/dispatch [::events/navigate [:medal-edit :id code]])}
    [:td
     [:span (+ i 1)]
     [:span
@@ -21,8 +23,7 @@
         sort-order (re-frame/subscribe [::subs/sort-order])]
     [:div
       (when @loading? "Loading...")
-        [:div {:class "container"}
-         [:h2 "MEDAL COUNT"]
+        [:div
          [:table  
           [:thead  
            [:tr  
@@ -42,6 +43,44 @@
           [:tbody
            (map-indexed medal-row @medals)]]]]))
 
+
+;; nav
+
+(defn navbar []
+  (let [active-panel (re-frame/subscribe [::subs/active-panel])]
+    [:div
+     [:ul.nav
+      [:li {:class (if (= @active-panel :home-panel) "current" "") }
+       [:a {:on-click #(re-frame/dispatch [::events/navigate [:home]])} "Home"]]
+      [:li {:class (if (= @active-panel :medals-panel) "current" "")}
+       [:a {:on-click #(re-frame/dispatch [::events/navigate [:medals]])} "Medals"]]]]))
+
+;; medal
+
+(defn medals-panel []
+  (let [name (re-frame/subscribe [::subs/name])]
+    [:div.container
+     [:h2 @name]
+     [medal-body]]))
+
+(defmethod routes/panels :medals-panel [] [medals-panel])
+
+;; home
+
+(defn home-panel []
+  (let [name (re-frame/subscribe [::subs/name])]
+    [:div.container
+     [:h2 "This is the Home Screen of Medal count widget"]]))
+
+(defmethod routes/panels :home-panel [] [home-panel])
+
+;; (defn main-panel []
+;;   (re-frame/dispatch [::events/fetch-medals])
+;;   [medal-body])
+
 (defn main-panel []
+  (let [active-panel (re-frame/subscribe [::subs/active-panel])]
   (re-frame/dispatch [::events/fetch-medals])
-  [medal-body])
+    [:div
+     [navbar]
+    [:div (routes/panels @active-panel)]]))
