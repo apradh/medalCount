@@ -170,3 +170,63 @@ table tbody th span:first-child {
   position: absolute;
   margin-left: 15px;
 }
+
+/* Navigation */
+
+ul.nav {
+  margin:0;
+  padding:0;
+  list-style:none;
+  height:36px; line-height:36px;
+  background:#e9a702;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+}
+ul.nav li {
+  border-right:1px solid #e9a702;
+  float:left;
+}
+ul.nav a {
+  display:block;
+  padding:0 28px;
+  color:#000;
+  text-decoration:none;
+}
+ul.nav a:hover,
+ul.nav li.current a {
+  background:#987f00;
+}
+
+/* Edit Form */
+input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #e9a702;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #987f00;
+}
+
+.form-container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width:40%; /* 70% of the parent*/
+  margin:100px auto;
+}

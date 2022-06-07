@@ -2,6 +2,7 @@
   (:require [re-frame.core :as re-frame]
             [day8.re-frame.http-fx]
             [ajax.core :as ajax]
+            [day8.re-frame.tracing :refer-macros [fn-traced]]
             [medal-app.db :as db]))
 
 (re-frame/reg-event-db
@@ -19,7 +20,7 @@
   (fn [{:keys [db]} _]                             ;; the first param will be "world"
     {:db   (assoc db :loading? true)               ;; causes the twirly-waiting-dialog to show??
      :http-xhrio {:method          :get
-                  :uri             "./server/medals.json"
+                  :uri             "http://localhost:8280/server/medals.json"
                   :timeout         8000                                           ;; optional see API docs
                   :response-format (ajax/json-response-format {:keywords? true})  ;; IMPORTANT!: You must provide this.
                   :on-success      [::fetch-medals-success]
@@ -38,7 +39,7 @@
 (re-frame/reg-event-db
   ::fetch-medals-failure
   (fn [db [_ data]]
-    (println "data")
+    (println data)
     db))
 
 (re-frame/reg-event-db
@@ -48,3 +49,20 @@
     (-> db
       (assoc :sort-order val)
       (assoc :medals (reverse (sort-by (juxt (keyword val) tie-breaker)  data)))))))
+
+; Events for Routes
+
+(re-frame/reg-event-fx
+ ::navigate
+ (fn-traced [_ [_ handler]]
+            {:navigate handler}))
+
+(re-frame/reg-event-fx
+ ::set-active-panel
+ (fn-traced [{:keys [db]} [_ active-panel]]
+            {:db (assoc db :active-panel active-panel)}))
+
+(re-frame/reg-event-fx
+ ::set-route
+ (fn-traced [{:keys [db]} [_ route]]
+            {:db (assoc db :route route)}))
