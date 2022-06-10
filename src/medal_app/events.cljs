@@ -39,8 +39,36 @@
 (re-frame/reg-event-db
   ::fetch-medals-failure
   (fn [db [_ data]]
+    (assoc db :loading? false)
     (println data)
     db))
+
+(re-frame/reg-event-fx
+ ::http-post
+ (fn [db [_ req-data]]
+   (println (str "req-data" req-data))
+   {:db   (assoc db :loading? true)
+    :http-xhrio {:method          :post
+                 :uri             "http://localhost:8280/server/medals.json"
+                 :params          req-data
+                 :timeout         5000
+                 :format          (ajax/json-request-format)
+                 :response-format (ajax/json-response-format {:keywords? true})
+                 :on-success      [::success-post-result]
+                 :on-failure      [::failure-post-result]}}))
+
+(re-frame/reg-event-db
+ ::success-post-result
+ (fn [db [_ data]]
+     (assoc db :loading? false)
+     (println data)))
+
+(re-frame/reg-event-db
+ ::failure-post-result
+ (fn [db [_ data]]
+   (assoc db :loading? false)
+   (println data)
+   db))
 
 (re-frame/reg-event-db
  ::sort-medals
@@ -66,3 +94,9 @@
  ::set-route
  (fn-traced [{:keys [db]} [_ route]]
             {:db (assoc db :route route)}))
+
+
+(re-frame/reg-event-db
+ ::update-form
+ (fn [db [_ id val]]
+   (assoc-in db [:form id] val)))
