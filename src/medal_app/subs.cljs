@@ -16,6 +16,22 @@
  (fn [db]
    (:medals db)))
 
+;(re-frame/reg-sub
+; ::sorted-medals
+; (fn [db]
+;   (let [medals (re-frame/subscribe [::medals])
+;         sort-order (re-frame/subscribe [::sort-order])
+;         tie-breaker (if (= @sort-order "gold") :silver :gold)]
+; (:sorted-medals db (reverse (sort-by (juxt (keyword @sort-order) tie-breaker)  @medals))))))
+
+(re-frame/reg-sub
+ ::sorted-medals
+ :<- [::medals]
+ :<- [::sort-order]
+ (fn [[medals sort-order] _]
+   (let [tie-breaker (if (= sort-order "gold") :silver :gold)]
+     (reverse (sort-by (juxt (keyword sort-order) tie-breaker)  medals)))))
+
 (re-frame/reg-sub
  ::sort-order
  (fn [db]

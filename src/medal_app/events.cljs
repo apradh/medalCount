@@ -34,7 +34,7 @@
                          (assoc d :total (+ gold silver bronze)))) data)]
       (-> db
         (assoc :loading? false)
-        (assoc :medals (reverse (sort-by (juxt :gold :silver) medal-data)))))))
+        (assoc :medals medal-data)))))
 
 (re-frame/reg-event-db
   ::fetch-medals-failure
@@ -72,11 +72,8 @@
 
 (re-frame/reg-event-db
  ::sort-medals
- (fn [db [_ val data]]
-  (let [tie-breaker (if (= val "gold") :silver :gold)]
-    (-> db
-      (assoc :sort-order val)
-      (assoc :medals (reverse (sort-by (juxt (keyword val) tie-breaker)  data)))))))
+ (fn [db [_ val]]
+  (assoc db :sort-order val)))
 
 ; Events for Routes
 

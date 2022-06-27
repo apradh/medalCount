@@ -17,3 +17,8 @@
 # calva output files
 /.calva/
 /.clj-kondo/
+
+
+
+/.idea/
+.DS_Store
