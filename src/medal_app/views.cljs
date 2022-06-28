@@ -19,8 +19,8 @@
 
 (defn medal-body []
   (let [loading? (re-frame/subscribe [::subs/loading?])
-        sort-order (re-frame/subscribe [::subs/sort-order])
-        sorted-medals (re-frame/subscribe [::subs/sorted-medals])]
+        sort-order @(re-frame/subscribe [::subs/sort-order])
+        sorted-medals @(re-frame/subscribe [::subs/sorted-medals])]
     [:div
       (when @loading? "Loading...")
         [:div
