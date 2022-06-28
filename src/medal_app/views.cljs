@@ -29,19 +29,19 @@
            [:tr  
             [:th]
             [:th {:on-click #(re-frame/dispatch [::events/sort-medals "gold"])
-                  :class (if (= @sort-order "gold") "active" "")}
+                  :class (if (= sort-order "gold") "active" "")}
              [:div.legend-gold]]
             [:th {:on-click #(re-frame/dispatch [::events/sort-medals "silver"])
-                  :class (if (= @sort-order "silver") "active" "")}
+                  :class (if (= sort-order "silver") "active" "")}
              [:div.legend-silver]]
             [:th {:on-click #(re-frame/dispatch [::events/sort-medals "bronze"])
-                  :class (if (= @sort-order "bronze") "active" "")}
+                  :class (if (= sort-order "bronze") "active" "")}
              [:div.legend-bronze]]
             [:th {:on-click #(re-frame/dispatch [::events/sort-medals "total"])
-                  :class (if (= @sort-order "total") "active" "")}
+                  :class (if (= sort-order "total") "active" "")}
               "Total"]]]
           [:tbody
-           (map-indexed medal-row @sorted-medals)]]]]))
+           (map-indexed medal-row sorted-medals)]]]]))
 
 
 ;; nav
