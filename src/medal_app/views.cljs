@@ -2,7 +2,9 @@
   (:require [re-frame.core :as re-frame]
             [medal-app.subs :as subs]
             [medal-app.routes :as routes]
-            [medal-app.events :as events]))
+            [medal-app.events :as events]
+            [medal-app.events :as events]
+            [medal-app.components.video :as video]))
 
 (defn medal-row [i {:keys [code gold silver bronze]}]
   [:tr {:key code
@@ -70,7 +72,17 @@
 (defn home-panel []
   (let [name (re-frame/subscribe [::subs/name])]
     [:div.container
-     [:h2 "This is the Home Screen of Medal count widget"]]))
+     [:h2 "This is the Home Screen of Medal count widget"]
+     [video/video {:id "my-video"
+                   :class "video-js"
+                   :controls true
+                   :preload "auto"
+                   :width "640"
+                   :height "264"
+                   :poster "http://localhost:8280/images/MY_VIDEO_POSTER.png"
+                   :mp4 "http://localhost:8280/images/MY_VIDEO.mp4"
+                   :webm "http://localhost:8280/images/MY_VIDEO.webm"
+                   :data-setup "{}"}]]))
 
 (defmethod routes/panels :home-panel [] [home-panel])
 
